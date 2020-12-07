@@ -28,4 +28,4 @@ jobs:
         run: mongodump --uri $MONGODB_URI
       
       - name: Check
-        run: ls -la
+        run: cd dump && ls -la
