@@ -24,6 +24,10 @@ jobs:
       #- name: Install DB tools
       #  run: sudo apt install ./mongodb-database-tools-ubuntu2004-x86_64-100.2.1.deb
         
+      - name: Set dns for Mongo URI lookup resolution
+        run: |
+          sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+        
       - name: Create MongoDump
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
