@@ -1,0 +1,33 @@
+name: Test
+
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@master
+        
+      - name: Download DB tools
+        run: wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2004-x86_64-100.2.1.deb
+        
+      - name: Install DB tools
+        run: sudo apt install ./mongodb-database-tools-ubuntu2004-x86_64-100.2.1.deb
+        
+      - name: Create MongoDump
+        with:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: mongodump --uri $MONGODB_URI
+      
+      - name: Check
+        run: ls
