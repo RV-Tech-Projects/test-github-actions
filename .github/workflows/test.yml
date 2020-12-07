@@ -18,12 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
         
-      #- name: Download DB tools
-      #  run: wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2004-x86_64-100.2.1.deb
-        
-      #- name: Install DB tools
-      #  run: sudo apt install ./mongodb-database-tools-ubuntu2004-x86_64-100.2.1.deb
-        
       - name: Set dns for Mongo URI lookup resolution
         run: |
           sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
@@ -34,4 +28,4 @@ jobs:
         run: mongodump --uri $MONGODB_URI
       
       - name: Check
-        run: ls
+        run: ls -la
