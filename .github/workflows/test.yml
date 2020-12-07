@@ -25,7 +25,7 @@ jobs:
         run: sudo apt install ./mongodb-database-tools-ubuntu2004-x86_64-100.2.1.deb
         
       - name: Create MongoDump
-        with:
+        env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: mongodump --uri $MONGODB_URI
       
