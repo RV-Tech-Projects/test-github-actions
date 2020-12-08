@@ -25,7 +25,10 @@ jobs:
       - name: Create MongoDump
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: mongodump --uri $MONGODB_URI && zip -r db_name_08_12_2020.zip dump
+        run: mongodump --uri $MONGODB_URI
       
+      - name: Zip the dump
+        run: zip -r db_name_08_12_2020.zip dump
+
       - name: Check
-        run: ls -la
+        run: ls -lah
