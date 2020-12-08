@@ -22,13 +22,10 @@ jobs:
         run: |
           sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
         
-      - name: Create MongoDump
+      - name: Create Zipped MongoDump
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: mongodump --uri $MONGODB_URI
-      
-      - name: Zip the dump
-        run: zip -r db_name_08_12_2020.zip dump
+        run: mongodump --uri $MONGODB_URI --archive=my_db_name_08_12_2020.zip
 
       - name: Check
         run: ls -lah
